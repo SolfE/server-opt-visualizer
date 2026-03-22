@@ -2,7 +2,7 @@ spring:
   application:
     name: server-opt-visualizer
   profiles:
-    default: local
+    default: docker
   datasource:
     url: ${APP_DATASOURCE_URL:jdbc:mysql://localhost:3306/server_opt_visualizer?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}
     username: ${APP_DATASOURCE_USERNAME:server_opt}

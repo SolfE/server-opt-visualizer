@@ -20,7 +20,7 @@
 
 - Avoid adding non-essential product features.
 - Prefer changes that help visualize bottlenecks or compare before/after improvements.
-- Keep the structure easy to explain and easy to run locally.
+- Keep the structure easy to explain and easy to run with the documented Docker-based local setup.
 - Update modeling documents when domain structure, request flow, or optimization strategy changes.
 - Treat Kafka and Grafana as later-stage experiment candidates, not default bootstrap requirements.
 

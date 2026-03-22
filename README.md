@@ -53,5 +53,7 @@ docker compose down -v
 ## Notes
 
 - 기본 실행 흐름은 Docker Compose로 MySQL, Redis를 띄운 뒤 애플리케이션을 시작하는 방식입니다.
+- 이 프로젝트는 성능 실험과 병목 재현이 목적이므로, 런타임은 MySQL, Redis, Flyway가 실제로 연결된 상태를 기본 전제로 둡니다.
+- `./gradlew test`는 빠른 피드백을 위해 H2 기반 test 프로필을 사용하며, 애플리케이션 기본 실행 환경과는 역할이 다릅니다.
 - 모델링 문서는 코드 변경과 함께 갱신하는 것을 원칙으로 합니다.
 - Kafka와 Grafana는 핵심 흐름 안정화 이후 검토할 후속 실험 후보입니다.
