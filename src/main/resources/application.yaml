@@ -1,3 +1,37 @@
 spring:
   application:
-    name: demo
+    name: server-opt-visualizer
+  profiles:
+    default: local
+  datasource:
+    url: ${APP_DATASOURCE_URL:jdbc:postgresql://localhost:5432/server_opt_visualizer}
+    username: ${APP_DATASOURCE_USERNAME:server_opt}
+    password: ${APP_DATASOURCE_PASSWORD:server_opt}
+    driver-class-name: org.postgresql.Driver
+  data:
+    redis:
+      host: ${APP_REDIS_HOST:localhost}
+      port: ${APP_REDIS_PORT:6379}
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    org.hibernate.SQL: info
