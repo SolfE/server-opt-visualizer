@@ -4,10 +4,10 @@ spring:
   profiles:
     default: local
   datasource:
-    url: ${APP_DATASOURCE_URL:jdbc:postgresql://localhost:5432/server_opt_visualizer}
+    url: ${APP_DATASOURCE_URL:jdbc:mysql://localhost:3306/server_opt_visualizer?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}
     username: ${APP_DATASOURCE_USERNAME:server_opt}
     password: ${APP_DATASOURCE_PASSWORD:server_opt}
-    driver-class-name: org.postgresql.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
   data:
     redis:
       host: ${APP_REDIS_HOST:localhost}

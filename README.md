@@ -8,7 +8,7 @@
 ## Summary
 
 - Spring Boot App
-- PostgreSQL
+- MySQL
 - Redis
 - Flyway
 - Thymeleaf
@@ -52,6 +52,6 @@ docker compose down -v
 
 ## Notes
 
-- 기본 실행 흐름은 Docker Compose로 PostgreSQL, Redis를 띄운 뒤 애플리케이션을 시작하는 방식입니다.
+- 기본 실행 흐름은 Docker Compose로 MySQL, Redis를 띄운 뒤 애플리케이션을 시작하는 방식입니다.
 - 모델링 문서는 코드 변경과 함께 갱신하는 것을 원칙으로 합니다.
 - Kafka와 Grafana는 핵심 흐름 안정화 이후 검토할 후속 실험 후보입니다.

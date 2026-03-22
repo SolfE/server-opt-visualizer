@@ -148,7 +148,7 @@
 초기 구조는 단순한 모놀리스로 시작합니다.
 
 - Spring Boot App
-- PostgreSQL
+- MySQL
 - Redis
 
 이 구성만으로도 다음을 충분히 보여줄 수 있습니다.
@@ -160,7 +160,7 @@
 
 ## 확장 실험 후보
 
-초기 구현은 PostgreSQL, Redis, 단일 모놀리스 구성에 집중합니다.
+초기 구현은 MySQL, Redis, 단일 모놀리스 구성에 집중합니다.
 다만 실험 범위가 확장되면 아래 도구도 후속 과제로 도입을 검토합니다.
 
 ### Kafka
@@ -212,7 +212,7 @@
 - Spring MVC
 - Thymeleaf
 - Gradle
-- PostgreSQL
+- MySQL
 - Redis
 
 후속 확장 후보:

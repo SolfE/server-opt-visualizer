@@ -1,17 +1,18 @@
 services:
-  postgres:
-    image: postgres:16-alpine
-    container_name: server-opt-postgres
+  mysql:
+    image: mysql:8.4
+    container_name: server-opt-mysql
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-server_opt_visualizer}
-      POSTGRES_USER: ${POSTGRES_USER:-server_opt}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-server_opt}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-server_opt_visualizer}
+      MYSQL_USER: ${MYSQL_USER:-server_opt}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-server_opt}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
     ports:
-      - "${POSTGRES_PORT:-5432}:5432"
+      - "${MYSQL_PORT:-3306}:3306"
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - mysql-data:/var/lib/mysql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-server_opt} -d ${POSTGRES_DB:-server_opt_visualizer}"]
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u${MYSQL_USER:-server_opt} -p${MYSQL_PASSWORD:-server_opt} --silent"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -31,5 +32,5 @@ services:
       retries: 5
 
 volumes:
-  postgres-data:
+  mysql-data:
   redis-data:
