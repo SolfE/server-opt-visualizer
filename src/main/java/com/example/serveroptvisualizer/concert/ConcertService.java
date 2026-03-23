@@ -14,11 +14,11 @@ public class ConcertService {
     this.concertRepository = concertRepository;
   }
 
-  public List<ConcertSummaryResponse> getConcerts() {
+  public List<ConcertSummaryView> getConcerts() {
     return concertRepository.findAllByOrderByIdAsc().stream()
         .map(
             concert ->
-                new ConcertSummaryResponse(
+                new ConcertSummaryView(
                     concert.getId(),
                     concert.getTitle(),
                     concert.getVenue(),

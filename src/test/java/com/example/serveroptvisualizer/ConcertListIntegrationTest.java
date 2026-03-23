@@ -1,8 +1,10 @@
 package com.example.serveroptvisualizer;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import com.example.serveroptvisualizer.concert.Concert;
 import com.example.serveroptvisualizer.concert.ConcertRepository;
@@ -41,12 +43,13 @@ class ConcertListIntegrationTest {
   }
 
   @Test
-  void getConcertsReturnsConcertList() throws Exception {
+  void getConcertsReturnsRenderedConcertListPage() throws Exception {
     mockMvc
-        .perform(get("/api/concerts"))
+        .perform(get("/concerts"))
         .andExpect(status().isOk())
-        .andExpect(jsonPath("$.length()").value(2))
-        .andExpect(jsonPath("$[0].title").value("Test Concert"))
-        .andExpect(jsonPath("$[1].title").value("Second Concert"));
+        .andExpect(view().name("concerts/list"))
+        .andExpect(model().attributeExists("concerts"))
+        .andExpect(content().string(org.hamcrest.Matchers.containsString("Test Concert")))
+        .andExpect(content().string(org.hamcrest.Matchers.containsString("Second Concert")));
   }
 }
