@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Concerts</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --page-bg: linear-gradient(135deg, #f3efe6 0%, #fff9ef 45%, #e7f1f6 100%);
+        --panel-bg: rgba(255, 255, 255, 0.88);
+        --text-main: #1f2933;
+        --text-subtle: #52606d;
+        --accent: #b44d2c;
+        --accent-soft: #f6d7c8;
+        --border: rgba(31, 41, 51, 0.12);
+        --shadow: 0 20px 45px rgba(60, 72, 88, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--page-bg);
+        color: var(--text-main);
+        font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+      }
+
+      main {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 48px 20px 72px;
+      }
+
+      .hero {
+        margin-bottom: 28px;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        margin-bottom: 12px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.7);
+        color: var(--accent);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.4rem, 6vw, 4.6rem);
+        line-height: 0.95;
+      }
+
+      .hero p {
+        max-width: 640px;
+        margin: 16px 0 0;
+        color: var(--text-subtle);
+        font-size: 1.05rem;
+        line-height: 1.7;
+      }
+
+      .concert-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 18px;
+      }
+
+      .concert-card {
+        padding: 22px;
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        background: var(--panel-bg);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(10px);
+      }
+
+      .concert-id {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-size: 0.95rem;
+        font-weight: 700;
+      }
+
+      .concert-card h2 {
+        margin: 18px 0 10px;
+        font-size: 1.45rem;
+        line-height: 1.2;
+      }
+
+      .venue {
+        margin: 0 0 14px;
+        color: var(--text-subtle);
+        font-size: 0.98rem;
+      }
+
+      .description {
+        margin: 0;
+        line-height: 1.65;
+      }
+
+      .empty-state {
+        padding: 24px;
+        border: 1px dashed var(--border);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.6);
+        color: var(--text-subtle);
+      }
+
+      @media (max-width: 640px) {
+        main {
+          padding-top: 32px;
+        }
+
+        .concert-card {
+          padding: 18px;
+          border-radius: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <div class="eyebrow">Monolith First</div>
+        <h1>Concert Lineup</h1>
+        <p>
+          병목 재현과 성능 비교 실험을 위한 최소 공연 목록 화면입니다. 지금은 서버 렌더링으로
+          목록 흐름을 먼저 고정하고, 이후 상세 조회와 좌석 흐름을 이어서 붙일 수 있습니다.
+        </p>
+      </section>
+
+      <section class="concert-grid" th:if="${!#lists.isEmpty(concerts)}">
+        <article class="concert-card" th:each="concert : ${concerts}">
+          <div class="concert-id" th:text="${concert.id()}">1</div>
+          <h2 th:text="${concert.title()}">Concert Title</h2>
+          <p class="venue" th:text="${concert.venue()}">Venue</p>
+          <p class="description" th:text="${concert.description()}">Description</p>
+        </article>
+      </section>
+
+      <section class="empty-state" th:if="${#lists.isEmpty(concerts)}">
+        아직 등록된 공연이 없습니다.
+      </section>
+    </main>
+  </body>
+</html>

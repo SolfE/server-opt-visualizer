@@ -40,6 +40,7 @@ spotless {
 }
 
 dependencies {
+  implementation("org.springframework.boot:spring-boot-starter-flyway")
   implementation("org.flywaydb:flyway-core")
   implementation("org.flywaydb:flyway-mysql")
   implementation("org.springframework.boot:spring-boot-starter-actuator")
@@ -52,6 +53,7 @@ dependencies {
   annotationProcessor("org.projectlombok:lombok")
   runtimeOnly("com.mysql:mysql-connector-j")
   testImplementation("org.springframework.boot:spring-boot-starter-test")
+  testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
   testRuntimeOnly("com.h2database:h2")
   testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
